@@ -1,2 +1,14 @@
-package org.iesvdm.models;public class ShoppingCart {
+package org.iesvdm.models;
+
+public class ShoppingCart {
+
+    // ATTRIBUTES:
+
+
+    // CONSTRUCTOR:
+
+
+    // METHODS:
+
+
 }

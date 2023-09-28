@@ -1,2 +1,14 @@
-package org.iesvdm.models;public class Customer {
+package org.iesvdm.models;
+
+public class Customer {
+
+    // ATTRIBUTES:
+
+
+    // CONSTRUCTOR:
+
+
+    // METHODS:
+
+
 }
