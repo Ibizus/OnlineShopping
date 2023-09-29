@@ -4,6 +4,7 @@ import org.iesvdm.utils.Address;
 import org.iesvdm.utils.Phone;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
@@ -18,22 +19,17 @@ public class Account {
     private LocalDateTime closed;
     private Customer customer;
     private ShoppingCart cart = new ShoppingCart();
-    private List<Payment> pays;
-    private LinkedHashSet<Order> orders; // {ordered, unique}
+    private List<Payment> pays = new ArrayList<>();
+    private LinkedHashSet<Order> orders = new LinkedHashSet<>(); // {ordered, unique}
 
 
     // CONSTRUCTOR:
-    public Account(String id) {
-        this.id = id;
-        this.open = LocalDateTime.now();
-    }
-
-    public Account(String id, Address billing_address, Boolean is_closed, Customer customer) {
+    public Account(String id, Address billing_address, Customer customer) {
         this.id = id;
         this.billing_address = billing_address;
-        this.is_closed = is_closed;
-        this.open = LocalDateTime.now();
         this.customer = customer;
+        this.open = LocalDateTime.now();
+        this.is_closed = false;
     }
 
 
@@ -41,6 +37,13 @@ public class Account {
     public void linkCustomerToAccount(Customer customer){
         this.setCustomer(customer);
     }
+
+    public void addToCart(Product product, Integer quantity) {
+
+        this.cart.addToCart(product, quantity);
+    }
+
+    public void buyCart()
 
 
 

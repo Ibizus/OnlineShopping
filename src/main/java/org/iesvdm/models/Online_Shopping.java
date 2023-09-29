@@ -35,6 +35,10 @@ public class Online_Shopping {
     public void newWebUser(WebUser webUser){
 
         this.webUsers.add(webUser);
+
+        try{
+            this.customers.add(webUser.getCustomer());
+        }catch (Exception e){}
     }
 
 

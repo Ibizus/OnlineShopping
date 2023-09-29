@@ -24,6 +24,10 @@ public class Product {
     // METHODS:
 
 
+    @Override
+    public String toString() {
+        return "Product{" + "id='" + id + ", name='" + name + '}';
+    }
 
     // GETTERS & SETTERS
     public void setName(String name) {

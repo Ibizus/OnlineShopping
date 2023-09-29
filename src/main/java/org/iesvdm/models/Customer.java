@@ -3,6 +3,8 @@ package org.iesvdm.models;
 import org.iesvdm.utils.Address;
 import org.iesvdm.utils.Phone;
 
+import java.util.Objects;
+
 public class Customer {
 
     // ATTRIBUTES:
@@ -26,6 +28,9 @@ public class Customer {
         this.setAccount(account);
     }
 
+    public void linkWebUserToCustomer(WebUser webUser){
+        this.setUser(webUser);
+    }
 
 
     // GETTERS & SETTERS:
@@ -65,7 +70,7 @@ public class Customer {
         return user;
     }
 
-    public void setUser(WebUser user) {
+    private void setUser(WebUser user) {
         this.user = user;
     }
 
@@ -75,5 +80,18 @@ public class Customer {
 
     private void setAccount(Account account) {
         this.account = account;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return Objects.equals(id, customer.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

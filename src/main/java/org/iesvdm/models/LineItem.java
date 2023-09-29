@@ -19,7 +19,13 @@ public class LineItem {
 
 
     // METHODS:
-
+    @Override
+    public String toString() {
+        return "LineItem{" +
+                "product=" + product +
+                ", quantity=" + quantity +
+                '}';
+    }
 
     // GETTERS & SETTERS:
     public Product getProduct() {

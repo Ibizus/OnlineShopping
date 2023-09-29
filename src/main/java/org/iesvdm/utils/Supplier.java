@@ -13,7 +13,7 @@ public class Supplier {
     }
 
     public Supplier(String name, Address address, Phone contactPhone) {
-        this.name = name;
+        this(name);
         this.address = address;
         this.contactPhone = contactPhone;
     }

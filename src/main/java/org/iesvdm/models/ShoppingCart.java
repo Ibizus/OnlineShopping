@@ -10,7 +10,7 @@ public class ShoppingCart {
     private LocalDate created;
     private WebUser user;
     private Account account;
-    private LinkedHashSet<LineItem> lines;
+    private LinkedHashSet<LineItem> lines = new LinkedHashSet<>();
 
     // CONSTRUCTOR:
 
@@ -25,7 +25,11 @@ public class ShoppingCart {
 
 
     // METHODS:
+    public void addToCart(Product product, Integer quantity){
+        LineItem line = new LineItem(product, quantity, new Order(), this);
 
+        this.lines.add(line);
+    }
 
     // GETTERS & SETTERS:
     public void setLines(LinkedHashSet<LineItem> lines) {

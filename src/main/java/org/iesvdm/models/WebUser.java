@@ -1,6 +1,8 @@
 package org.iesvdm.models;
 
-    enum UserState {New, Active, Blocked, Banned};
+import java.util.Objects;
+
+enum UserState {New, Active, Blocked, Banned};
 public class WebUser {
 
     // ATTRIBUTES:
@@ -11,14 +13,17 @@ public class WebUser {
     private ShoppingCart cart;
 
     // CONSTRUCTOR:
-    public WebUser(String id, String pass){
-
+    public WebUser(String id, String pass, Customer customer){
         this.login_id = id;
         this.password = pass;
+        this.customer = customer;
+        this.state = UserState.New;
+        try {
+            this.cart = customer.getAccount().getCart();
+        }
+        catch(Exception e) {
+        }
     }
-
-    // METHODS:
-
 
 
     // GETTERS & SETTERS:
@@ -50,7 +55,7 @@ public class WebUser {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    private void setCustomer(Customer customer) {
         this.customer = customer;
     }
 
@@ -60,5 +65,18 @@ public class WebUser {
 
     public void setCart(ShoppingCart cart) {
         this.cart = cart;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        WebUser webUser = (WebUser) o;
+        return Objects.equals(login_id, webUser.login_id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(login_id);
     }
 }
