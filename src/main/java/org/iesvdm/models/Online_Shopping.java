@@ -5,25 +5,37 @@ import java.util.HashSet;
 
 public class Online_Shopping {
 
-    /*
-    Crea los siguientes tests:
-
-    Crear varios Web User, Customer, Account.
-    Crear varios Product.
-    Añadir varios Product a ShoppingCart de Web User y Account existente.
-    Crear un Order y Payment asociado a un ShoppingCart existente.
-     */
-
     // ATTRIBUTES:
-    private HashSet<Customer> customers;
-    private HashSet<WebUser> webUsers;
-    private ArrayList<Product> products;
+    private HashSet<Customer> customers = new HashSet<>();
+    private HashSet<WebUser> webUsers = new HashSet<>();
+    private ArrayList<Product> products = new ArrayList<>();
 
     // CONSTRUCTOR:
     public Online_Shopping() {
     }
 
     // METHODS:
+    public void addProductToShop(Product product){
+
+        if(this.products.contains(product))
+        {
+            System.out.println("Product already listed in Shop");
+        }
+        else
+        {
+            this.products.add(product);
+        }
+    }
+
+    public void newCustomer(Customer customer){
+
+        this.customers.add(customer);
+    }
+
+    public void newWebUser(WebUser webUser){
+
+        this.webUsers.add(webUser);
+    }
 
 
     // GETTERS & SETTERS:

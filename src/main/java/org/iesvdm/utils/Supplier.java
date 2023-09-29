@@ -8,6 +8,10 @@ public class Supplier {
     private Phone contactPhone;
 
     // CONSTRUCTOR:
+    public Supplier(String name) {
+        this.name = name;
+    }
+
     public Supplier(String name, Address address, Phone contactPhone) {
         this.name = name;
         this.address = address;

@@ -3,6 +3,8 @@ package org.iesvdm.models;
 import org.iesvdm.utils.Price;
 import org.iesvdm.utils.Supplier;
 
+import java.util.Objects;
+
 public class Product {
 
     // ATTRIBUTES:
@@ -50,5 +52,18 @@ public class Product {
 
     public Price getPrice() {
         return price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(id, product.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

@@ -7,6 +7,9 @@ public class Phone {
     private String phoneNumber;
 
     // CONSTRUCTOR:
+    public Phone() {
+    }
+
     public Phone(String prefix, String phoneNumber) {
         this.prefix = prefix;
         this.phoneNumber = phoneNumber;

@@ -22,6 +22,9 @@ public class Customer {
     }
 
     // METHODS:
+    public void linkCustomerToAccount(Account account){
+        this.setAccount(account);
+    }
 
 
 
@@ -70,7 +73,7 @@ public class Customer {
         return account;
     }
 
-    public void setAccount(Account account) {
+    private void setAccount(Account account) {
         this.account = account;
     }
 }

@@ -14,6 +14,9 @@ public class ShoppingCart {
 
     // CONSTRUCTOR:
 
+    public ShoppingCart() {
+    }
+
     public ShoppingCart(LocalDate created, WebUser user, Account account) {
         this.created = created;
         this.user = user;

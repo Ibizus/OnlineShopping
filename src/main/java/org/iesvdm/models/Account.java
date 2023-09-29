@@ -6,6 +6,7 @@ import org.iesvdm.utils.Phone;
 import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Objects;
 
 public class Account {
 
@@ -16,23 +17,30 @@ public class Account {
     private LocalDateTime open;
     private LocalDateTime closed;
     private Customer customer;
-    private ShoppingCart cart;
+    private ShoppingCart cart = new ShoppingCart();
     private List<Payment> pays;
     private LinkedHashSet<Order> orders; // {ordered, unique}
 
 
     // CONSTRUCTOR:
-    public Account(String id, Address billing_address, Boolean is_closed, LocalDateTime open, Customer customer, ShoppingCart cart) {
+    public Account(String id) {
+        this.id = id;
+        this.open = LocalDateTime.now();
+    }
+
+    public Account(String id, Address billing_address, Boolean is_closed, Customer customer) {
         this.id = id;
         this.billing_address = billing_address;
         this.is_closed = is_closed;
-        this.open = open;
+        this.open = LocalDateTime.now();
         this.customer = customer;
-        this.cart = cart;
     }
 
 
     // METHODS:
+    public void linkCustomerToAccount(Customer customer){
+        this.setCustomer(customer);
+    }
 
 
 
@@ -91,5 +99,20 @@ public class Account {
 
     public void setOrders(LinkedHashSet<Order> orders) {
         this.orders = orders;
+    }
+
+    private void setCustomer(Customer customer) { this.customer = customer; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Account account = (Account) o;
+        return Objects.equals(id, account.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
