@@ -1,5 +1,6 @@
 package org.iesvdm.models;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
@@ -13,7 +14,6 @@ public class ShoppingCart {
     private LinkedHashSet<LineItem> lines = new LinkedHashSet<>();
 
     // CONSTRUCTOR:
-
     public ShoppingCart() {
     }
 
@@ -29,6 +29,15 @@ public class ShoppingCart {
         LineItem line = new LineItem(product, quantity, new Order(), this);
 
         this.lines.add(line);
+    }
+    
+    public BigDecimal getTotal(){
+        BigDecimal total = new BigDecimal("0");
+        for (LineItem line : this.lines)
+        {
+            total = total.add(line.getProduct().getPrice().getAmount().multiply(new BigDecimal("" + line.getQuantity())));
+        }
+        return total;
     }
 
     // GETTERS & SETTERS:

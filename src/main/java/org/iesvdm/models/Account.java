@@ -43,8 +43,19 @@ public class Account {
         this.cart.addToCart(product, quantity);
     }
 
-    public void buyCart()
-
+    public void buyCart(String details){
+        // Create order and Payment
+        Order order = new Order(this.customer.getAddress(), this.cart.getTotal(), this.customer.getAccount());
+        Payment pay = new Payment(details, this, order);
+        // Link them to account
+        orders.add(order);
+        pays.add(pay);
+        // Register order into lineItems of the cart
+        for (LineItem line: cart.getLines())
+        {
+            line.setOrder(order);
+        }
+    }
 
 
     // GETTERS & SETTERS:

@@ -12,15 +12,6 @@ import java.math.BigDecimal;
 
 public class OnlineShoppingTest {
 
-    /*
-    Crea los siguientes tests:
-
-    Crear varios Web User, Customer, Account.
-    Crear varios Product.
-    Añadir varios Product a ShoppingCart de Web User y Account existente.
-    Crear un Order y Payment asociado a un ShoppingCart existente.
-     */
-
     // FIRST CREATE THE NEW ONLINE SHOP:
     Online_Shopping coolmod = new Online_Shopping();
 
@@ -114,7 +105,28 @@ public class OnlineShoppingTest {
 
     @Test
     public void createOrderAndPaymentForExistingCart(){
-       // Crear un Order y Payment asociado a un ShoppingCart existente.
 
+        // Create Customer Profile
+        Customer customer1 = new Customer("1", new Address(), new Phone(), "person1@mail.com");
+        Account number1 = new Account("1", new Address(), customer1);
+        customer1.linkCustomerToAccount(number1);
+        WebUser user1 = new WebUser("Paolo", "1111", customer1);
+        coolmod.newWebUser(user1);
+        // Product
+        Product box = new Product("1", "PC Box", new Supplier("DELL"), new Price(new BigDecimal("45"), "EUR"));
+        coolmod.addProductToShop(box);
+        // Add to cart
+        user1.getCart().addToCart(box, 2);
+        number1.addToCart(box, 5); // ----> 7 items added: 45x7= 315
+
+        // Buy cart and create order and payment:
+        customer1.getAccount().buyCart("first purchase");
+
+        // Assess data entry:
+        Assertions.assertEquals(1, customer1.getAccount().getOrders().size());
+        Assertions.assertEquals(1, customer1.getAccount().getPays().size());
+
+        // Assess data values:
+        Assertions.assertEquals(new BigDecimal("315"), customer1.getAccount().getCart().getTotal());
     }
 }

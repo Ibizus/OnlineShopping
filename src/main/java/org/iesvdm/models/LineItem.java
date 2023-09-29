@@ -51,4 +51,8 @@ public class LineItem {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 }

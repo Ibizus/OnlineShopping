@@ -13,6 +13,7 @@ public class Order {
 
     // ATTRIBUTES:
     private String id;
+    static private String idCount;
     private LocalDateTime ordered;
     private LocalDateTime shipped;
     private Address ship_to;
@@ -27,8 +28,8 @@ public class Order {
     public Order() {
     }
 
-    public Order(String id, Address ship_to, BigDecimal total, Account account) {
-        this.id = id;
+    public Order(Address ship_to, BigDecimal total, Account account) {
+        this.id = idCount+1;
         this.ship_to = ship_to;
         this.total = total;
         this.account = account;
